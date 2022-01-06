@@ -7,7 +7,8 @@
 1. Поставить python 3.10
 2. Установить пакетный менеджер poetry `pip install poetry`
 3. Развернуть виртуальное окружение `poetry install`
-4. Создать .env файл с переменными окружения по аналогии с .env_example
+4. Создать конфигурационный файл transfinance/config.yaml с пользовательскими 
+данными аналогии с examples/config.yaml
 
 ## Запуск
 
