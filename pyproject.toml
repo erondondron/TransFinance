@@ -6,7 +6,8 @@ authors = ["erondondron <smirnov.andrey.serg@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.10"
-python-dotenv = "^0.19.2"
+tinvest = "^3.0.5"
+PyYAML = "^6.0"
 
 [tool.poetry.dev-dependencies]
 mypy = "^0.930"
