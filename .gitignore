@@ -133,3 +133,4 @@ dmypy.json
 
 # Configuration
 transfinance/config.yaml
+userdata/
