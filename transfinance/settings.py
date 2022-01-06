@@ -43,14 +43,18 @@ def extract_config_field(
 with open(CONFIG_PATH, "r", encoding="utf-8") as file:
     config = yaml.safe_load(file)
 
-TINKOFF_MARKET_TOKEN: str = extract_config_field(
-    config, ConfigFields.TINKOFF_MARKET_TOKEN
-)
-TINKOFF_SANDBOX_TOKEN: str = extract_config_field(
-    config, ConfigFields.TINKOFF_SANDBOX_TOKEN
-)
-WORKING_DIRECTORY: Path = extract_config_field(
-    config, ConfigFields.WORKING_DIRECTORY, Path, Path("userdata")
-)
-WORKING_DIRECTORY.mkdir(parents=True, exist_ok=True)
-FIGI_FILE = WORKING_DIRECTORY.joinpath("figi_file.txt")
+
+class Settings:
+    TINKOFF_MARKET_TOKEN: str = extract_config_field(
+        config, ConfigFields.TINKOFF_MARKET_TOKEN
+    )
+    TINKOFF_SANDBOX_TOKEN: str = extract_config_field(
+        config, ConfigFields.TINKOFF_SANDBOX_TOKEN
+    )
+    WORKING_DIRECTORY: Path = extract_config_field(
+        config, ConfigFields.WORKING_DIRECTORY, Path, Path("userdata")
+    )
+    FIGI_FILE: Path = WORKING_DIRECTORY.joinpath("figi_file.txt")
+
+
+Settings.WORKING_DIRECTORY.mkdir(parents=True, exist_ok=True)

@@ -10,11 +10,11 @@ from tinvest import (
     Candle,
 )
 
-from transfinance.settings import TINKOFF_SANDBOX_TOKEN, FIGI_FILE
+from transfinance.settings import Settings
 
 
 class TinkoffClient:
-    sync = SyncClient(TINKOFF_SANDBOX_TOKEN, use_sandbox=True)
+    sync = SyncClient(Settings.TINKOFF_SANDBOX_TOKEN, use_sandbox=True)
 
     @staticmethod
     def register_broker() -> str:
@@ -56,5 +56,5 @@ class TinkoffClient:
             f"{s.name} ({s.currency.value}): {s.figi}"
             for s in TinkoffClient.get_market_stocks()
         ]
-        with open(FIGI_FILE, "w", encoding="utf-8") as file:
+        with open(Settings.FIGI_FILE, "w", encoding="utf-8") as file:
             file.write("\n".join(stocks))
