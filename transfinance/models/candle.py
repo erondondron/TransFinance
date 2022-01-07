@@ -31,3 +31,6 @@ class Candle(BaseModel):
 
 class CandlesCollection(BaseModel):
     candles: List[Candle]
+
+    def sort(self) -> None:
+        self.candles = list(sorted(self.candles, key=lambda c: c.time))
