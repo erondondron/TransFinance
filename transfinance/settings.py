@@ -4,7 +4,7 @@ from typing import Dict, Any, TypeVar, Optional, Type
 
 import yaml
 
-CONFIG_PATH = Path("config.yaml")
+CONFIG_PATH = Path(r"transfinance/config.yaml")
 FIELD_TYPE = TypeVar("FIELD_TYPE")
 
 
