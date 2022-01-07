@@ -34,3 +34,11 @@ class CandlesCollection(BaseModel):
 
     def sort(self) -> None:
         self.candles = list(sorted(self.candles, key=lambda c: c.time))
+
+    def last_date(self) -> datetime:
+        last_candle = max(self.candles, key=lambda c: c.time)
+        return last_candle.time
+
+    def first_date(self) -> datetime:
+        first_candle = min(self.candles, key=lambda c: c.time)
+        return first_candle.time
