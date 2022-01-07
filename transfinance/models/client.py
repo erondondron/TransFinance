@@ -7,9 +7,10 @@ from tinvest import (
     BrokerAccountType,
     MarketInstrument,
     CandleResolution,
-    Candle,
+    Candle as TCandle,
 )
 
+from transfinance.models.candle import Candle
 from transfinance.settings import Settings
 
 
@@ -41,7 +42,8 @@ class TinkoffClient:
         resp = TinkoffClient.sync.get_market_candles(
             figi, from_dt, to_dt, resolution
         )
-        candles: List[Candle] = resp.payload.candles
+        t_candles: List[TCandle] = resp.payload.candles
+        candles: List[Candle] = list(map(Candle.from_tinkoff_candle, t_candles))
         return candles
 
     @staticmethod
