@@ -1,4 +1,5 @@
 from datetime import datetime
+from typing import List
 
 from pydantic import BaseModel
 from tinvest import Candle as TCandle
@@ -19,10 +20,14 @@ class Candle(BaseModel):
     @staticmethod
     def from_tinkoff_candle(t_candle: TCandle) -> "Candle":
         return Candle(
-            int(t_candle.o * 100),
-            int(t_candle.c * 100),
-            int(t_candle.h * 100),
-            int(t_candle.l * 100),
-            t_candle.v,
-            t_candle.time,
+            open=int(t_candle.o * 100),
+            close=int(t_candle.c * 100),
+            high=int(t_candle.h * 100),
+            low=int(t_candle.l * 100),
+            value=t_candle.v,
+            time=t_candle.time,
         )
+
+
+class CandlesCollection(BaseModel):
+    candles: List[Candle]
