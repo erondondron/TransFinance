@@ -1,5 +1,5 @@
 from datetime import datetime
-from typing import List
+from typing import List, Iterator
 
 from pydantic import BaseModel
 from tinvest import Candle as TCandle
@@ -31,6 +31,17 @@ class Candle(BaseModel):
 
 class CandlesCollection(BaseModel):
     candles: List[Candle]
+
+    def __iter__(self) -> Iterator:
+        return iter(self.candles)
+
+    def __getitem__(self, item: int) -> Candle:
+        return self.candles[item]
+
+    def __setslice__(
+        self, start: int, end: int, step: int
+    ) -> "CandlesCollection":
+        return CandlesCollection(candles=self.candles[start:end:step])
 
     def sort(self) -> None:
         self.candles = list(sorted(self.candles, key=lambda c: c.time))
