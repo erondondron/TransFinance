@@ -55,6 +55,7 @@ class Settings:
         config, ConfigFields.WORKING_DIRECTORY, Path, Path("userdata")
     )
     FIGI_FILE: Path = WORKING_DIRECTORY.joinpath("figi_file.txt")
+    CANDLES_DIR: Path = WORKING_DIRECTORY.joinpath("candles")
 
 
 Settings.WORKING_DIRECTORY.mkdir(parents=True, exist_ok=True)
